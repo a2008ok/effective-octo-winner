@@ -107,7 +107,7 @@ $(function () {
             }
         }).cropper(options);
 
-        var mystyle；
+        var mystyle;
 
         $("#pic1").on("click", function() {
             var totalpath = "./picture/pic1.png";
