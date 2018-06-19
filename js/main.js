@@ -218,7 +218,8 @@ $(function () {
                             URL.revokeObjectURL(blobURL); // Revoke when load complete
                         }).cropper('reset', true).cropper('replace', blobURL);
                         $inputImage.val('');
-                        $(".operate").removeClass("hidden")
+                        $(".operate").removeClass("hidden"),
+                        document.getElementById("choose").scrollIntoView()
 
                     } else {
                         showMessage('请选择图片！');
