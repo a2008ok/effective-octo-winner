@@ -107,9 +107,11 @@ $(function () {
             }
         }).cropper(options);
 
+        var mystyle；
+
         $("#pic1").on("click", function() {
             var totalpath = "./picture/pic1.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -117,7 +119,7 @@ $(function () {
 
         $("#pic2").on("click", function() {
             var totalpath = "./picture/pic2.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -125,7 +127,7 @@ $(function () {
 
         $("#pic3").on("click", function() {
             var totalpath = "./picture/pic3.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -133,7 +135,7 @@ $(function () {
 
         $("#pic4").on("click", function() {
             var totalpath = "./picture/pic4.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -141,7 +143,7 @@ $(function () {
 
         $("#pic5").on("click", function() {
             var totalpath = "./picture/pic1.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -149,7 +151,7 @@ $(function () {
 
         $("#pic6").on("click", function() {
             var totalpath = "./picture/pic1.png";
-            var mystyle = abc(totalpath);
+            mystyle = abc(totalpath);
             mystyle.onload = function() {
                 $("#avatarPreview").attr("src", mystyle.src)
             };
@@ -182,6 +184,7 @@ $(function () {
                 var g = document.getElementById("image");
                 g.crossOrigin = "*";
                 u.drawImage(g, -n * o, -i * o, d * o, c * o);
+                u.drawImage(mystyle, 0, 0, e, e);
                 var v = document.getElementById("outputImage");
                 v.src = m.toDataURL("");
             }                
