@@ -1,237 +1,160 @@
-$(function () {
+<!DOCTYPE html>
+    <html lang="zh-CN">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+            <title>毕业季</title>
 
-    'use strict';
+            <!-- Bootstrap -->
+            <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Cropper -->
+            <link href="./cropper/croppe.css" rel="stylesheet">
+            <link href="./css/index.css" rel="stylesheet">
+        </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img alt="SYSU" src="./picture/SYSU.jpg" width="25" height="25">
+                    </a>
+                    <p class="navbar-text">毕业季头像生成器</p>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    </br>
+                    </br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img id="header" class="img-responsive center-block" src="./picture/header.jpg">
+                </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="tips">
+                        <h4 id="tips1">请上传你的图片</h4>
+                    </div> 
+                </div>
+                <div class="col-xs-12">
+                    <label class="btn btn-default one" for="inputImage">
+                        <input id="inputImage" type="file" name="inputImage" class="hidden button button-pill">
+                        <span>选择图片</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row" id="choose">
+                </br>
+                </br>
+                </br>
+            </div> 
+            <div class="row operate hidden">
+                <div class="col-xs-12">
+                    <div class="tips">
+                        <h4 id="tips1">请选择你想要使用的模板</h4>
+                    </div>   
+                <div class="col-xs-12">
+                    </br>
+                </div>   
+                    <button type="button" class="btn btn-tpl" id="pic1" style="background-image: url(./picture/pic1.png);"></button>
+                    <button type="button" class="btn btn-tpl" id="pic2" style="background-image: url(./picture/pic2.png);"></button>
+                    <button type="button" class="btn btn-tpl" id="pic3" style="background-image: url(./picture/pic3.png);"></button>
+                    <button type="button" class="btn btn-tpl" id="pic4" style="background-image: url(./picture/pic4.png);"></button>
+                    <button type="button" class="btn btn-tpl" id="pic5" style="background-image: url(./picture/pic1.png);"></button>
+                    <button type="button" class="btn btn-tpl" id="pic6" style="background-image: url(./picture/pic1.png);"></button>
+                </div>
+            </div>
+            <div class="row" id="operating">
+                </br>
+            </div>  
+            <div class="row operate hidden" >
+                <div class="col-xs-12">
+                    <div class="tips">
+                        <h4 id="tips1">编辑图片，生成你的专属头像</h4>
+                    </div> 
+                </div>
+            </div>
+            <div class="row operate hidden">
+                </br>
+            </div>  
+            <div class="row operate hidden">
+                <div class="col-xs-5">
+                    <label class="btn btn-default two" for="generate">
+                        <button id="generate" class="hidden button button-pill"></button> 
+                        <span>生成头像</span>
+                    </label>
+                    <label class="btn btn-default two" for="reset">
+                        <button id="reset" class="hidden button button-pill"></button>
+                        <span>重&#160&#160&#160&#160&#160&#160&#160置</span>
+                    </label>
+                </div>
+                <div class="col-xs-7">
+                    <div class="img-preview">
+                        <img src="">
+                    </div>
+                    <img id="avatarPreview" src="./picture/pic1.png" >
+                </div>
+            </div> 
+            <div class="row operate hidden">
+            </div> 
 
-    var console = window.console || { log: function () {} },
-        $alert = $('.docs-alert'),
-        $message = $alert.find('.message'),
-        showMessage = function (message, type) {
-            $message.text(message);
-
-            if (type) {
-                $message.addClass(type);
-            }
-
-            $alert.fadeIn();
-
-            setTimeout(function () {
-                $alert.fadeOut();
-            }, 3000);
-        };
-
-  // Demo
-  // -------------------------------------------------------------------------
-
-    function abc(img) {
-        var newImg = new Image;
-        return newImg.crossOrigin = "*",
-        newImg.src = img, 
-       newImg
-    }
-
-    (function () {
-        var $image = $('.img-container > img'),
-            $dataX = $('#dataX'),
-            $dataY = $('#dataY'),
-            $dataHeight = $('#dataHeight'),
-            $dataWidth = $('#dataWidth'),
-            $dataRotate = $('#dataRotate'),
-            options = {
-                // strict: false,
-                // responsive: false,
-                // checkImageOrigin: false
-
-                // modal: false,
-                guides: false,
-                // highlight: false,
-                // background: false,
-
-                // autoCrop: false,
-                // autoCropArea: 0.5,
-                // dragCrop: false,
-                movable: false,
-                resizable: false,
-                // rotatable: false,
-                // zoomable: false,
-                // touchDragZoom: false,
-                // mouseWheelZoom: false,
-
-                // minCanvasWidth: 320,
-                // minCanvasHeight: 180,
-                // minCropBoxWidth: 160,
-                // minCropBoxHeight: 90,
-                // minContainerWidth: 320,
-                // minContainerHeight: 180,
-
-                // build: null,
-                // built: null,
-                // dragstart: null,
-                // dragmove: null,
-                // dragend: null,
-                // zoomin: null,
-                // zoomout: null,
-                viewMode : 1,
-                aspectRatio: 1 / 1,
-                preview: '.img-preview',
-                dragMode: 'none',
-                crop: function (data) {
-                    $dataX.val(Math.round(data.x));
-                    $dataY.val(Math.round(data.y));
-                    $dataHeight.val(Math.round(data.height));
-                    $dataWidth.val(Math.round(data.width));
-                   $dataRotate.val(Math.round(data.rotate));
-                }
-            };
-
-        $image.on({
-            'build.cropper': function (e) {
-                console.log(e.type);
-            },
-            'built.cropper': function (e) {
-                console.log(e.type);
-            },
-            'dragstart.cropper': function (e) {
-                console.log(e.type, e.dragType);
-            },
-            'dragmove.cropper': function (e) {
-                console.log(e.type, e.dragType);
-           },
-            'dragend.cropper': function (e) {
-                console.log(e.type, e.dragType);
-           },
-            'zoomin.cropper': function (e) {
-                console.log(e.type);
-           },
-            'zoomout.cropper': function (e) {
-                console.log(e.type);
-            }
-        }).cropper(options);
-
-        var mystyle;
-
-        $("#pic1").on("click", function() {
-            var totalpath = "./picture/pic1.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
-
-        $("#pic2").on("click", function() {
-            var totalpath = "./picture/pic2.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
-
-        $("#pic3").on("click", function() {
-            var totalpath = "./picture/pic3.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
-
-        $("#pic4").on("click", function() {
-            var totalpath = "./picture/pic4.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
-
-        $("#pic5").on("click", function() {
-            var totalpath = "./picture/pic5.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
-
-        $("#pic6").on("click", function() {
-            var totalpath = "./picture/pic6.png";
-            mystyle = abc(totalpath);
-            mystyle.onload = function() {
-                $("#avatarPreview").attr("src", mystyle.src);
-                document.getElementById("operating").scrollIntoView();
-            };
-        });
+            <div class="row operate hidden">
+                <div class="col-xs-12">
+                    <div class='panel-sysu93'>
+                        <div class="img-container">
+                            <img id="image" src="./picture/1.jpg" alt="Picture" style="max-width: 100%">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="row operate hidden">
+                </br>
+            </div>   
+            
+            <div class="row generating hidden">
+                </br>
+            </div>     
+            <div class="row generating hidden" id="generatingImg">
+                <div class="col-xs-12">
+                    <div class="tips">
+                        <h4 id="tips1">保存图片</h4>
+                    </div> 
+                </div>
+            </div>
+            <div class="row generating hidden">
+                <div>
+                    <h5 style="text-align: center;">长按图片以保存</h5>
+                </div>
+                <div class="col-xs-12">
+                    <div class="panel-body">
+                        <img src="http://news2.sysu.edu.cn/sysu93/index.html" id="outputImage" class="img-responsive" alt="图片生成中，请稍等">
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                </br>
+            </div>  
+            <div class="row">
+                <div class="tips">
+                    <h5 id="tips1">共青团中山大学委员会</h5>
+                </div> 
+            </div>
+        </div>
+        <canvas id="myCanvas" style="display: none;"></canvas>
 
 
-        $("#reset").on("click", function () {
-            $('#image').cropper('reset');
-        });
-
-
-        $("#generate").on("click", function() {
-            if (!$(this).hasClass("disabled")) {
-                $("#outputImage").attr("src", null);
-                const e = 640;
-                var t = $image.cropper('getData');
-                var a = t.width;
-                var n = t.x;
-                var i = t.y;
-                var o = e / a;
-                var l = $image.cropper('getImageData');
-                var c = l.naturalHeight;
-                var d = l.naturalWidth;
-                var m = document.getElementById("myCanvas");
-                m.width = e;
-                m.height = e;
-                var u = m.getContext("2d");
-                u.fillStyle = "#fff";
-                u.fillRect(0, 0, e, e);
-                var g = document.getElementById("image");
-                g.crossOrigin = "*";
-                u.drawImage(g, -n * o, -i * o, d * o, c * o);
-                u.drawImage(mystyle, 0, 0, e, e);
-                var v = document.getElementById("outputImage");
-                v.src = m.toDataURL("");
-            }                
-            $(".generating").removeClass("hidden"), 
-            document.getElementById("generatingImg").scrollIntoView();
-        });
-
-
-        var $inputImage = $('#inputImage'),
-            URL = window.URL || window.webkitURL,
-            blobURL;
-
-        if (URL) {
-            $inputImage.change(function () {
-                var files = this.files,
-                file;
-
-                if (files && files.length) {
-                    file = files[0];
-
-                    if (/^image\/\w+$/.test(file.type)) {
-                        blobURL = URL.createObjectURL(file);
-                        $("#image").attr('src' , blobURL);
-                        $image.one('built.cropper', function () {
-                            URL.revokeObjectURL(blobURL); // Revoke when load complete
-                        }).cropper('reset', true).cropper('replace', blobURL);
-                        $inputImage.val('');
-                        $(".operate").removeClass("hidden"),
-                        document.getElementById("choose").scrollIntoView()
-
-                    } else {
-                        showMessage('请选择图片！');
-                    }
-                }
-            });
-        } else {
-            $inputImage.parent().remove();
-        };
-
-
-    }());
-
-
-});
+        <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="./cropper/croppe.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
